@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Region Capture</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Region Capture</h1>
+        <div class="buttons">
+            <button id="getAndSavePosition" class="btn primary">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path
+                        d="M17 5.33C17 3.5 15.5 2 13.67 2H5.33C3.5 2 2 3.5 2 5.33v13.34C2 20.5 3.5 22 5.33 22h8.34c1.83 0 3.33-1.5 3.33-3.33V5.33zM8 18H6v-2h2v2zm0-4H6v-2h2v2zm0-4H6V8h2v2zm6 8h-4v-2h4v2zm0-4h-4v-2h4v2zm0-4h-4V8h4v2z" />
+                </svg>
+                Select Region
+            </button>
+            <button id="capture" class="btn secondary">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path
+                        d="M4 4h3l2-2h6l2 2h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm8 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
+                </svg>
+                Capture
+            </button>
+        </div>
+        <div class="instructions">
+            <h3>How to use:</h3>
+            <ol>
+                <li>Click "Select Region" and drag on the page to define an area</li>
+                <li>Coordinates will be saved automatically</li>
+                <li>Click "Capture" to take a screenshot of the saved region</li>
+            </ol>
+        </div>
+        <div class="status">
+            <p id="statusText">Ready to select region</p>
+        </div>
+    </div>
+    <script src="../popup.js"></script>
+</body>
+
+</html>
