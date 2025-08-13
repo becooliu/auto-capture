@@ -35,7 +35,7 @@ function handleMouseDown(e) {
   pageY = e.pageY;
   scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
   scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
-  // console.log("mousedown event", startX, startY, pageX, pageY);
+  console.log("scrollTop, scrollLeft", scrollTop, scrollLeft);
 
   if (!selectionRect) {
     selectionRect = document.createElement("div");
@@ -125,14 +125,18 @@ function saveCoordinates(coords) {
 }
 
 async function waitPageScroll() {
-  window.scroll({ top: pageY, left: pageX, behavior: "smooth" });
-  const pageSrollTop =
-    document.documentElement.scrollTop || document.body.scrollTop;
-  const pagesrollLeft =
-    document.documentElement.scrollLeft || document.body.scrollLeft;
+  // window.scroll({ top: scrollTop, left: scrollLeft, behavior: "smooth" });
+
+  let pageSrollTop, pagesrollLeft;
+  console.log("---pageSrollTop---", pageSrollTop);
 
   await new Promise((resolve) => {
     const checkScrollAction = () => {
+      window.scroll({ top: scrollTop, left: scrollLeft, behavior: "smooth" });
+      pageSrollTop =
+        document.documentElement.scrollTop || document.body.scrollTop;
+      pagesrollLeft =
+        document.documentElement.scrollLeft || document.body.scrollLeft;
       console.log("check equal:", pageSrollTop, scrollTop);
       if (pageSrollTop == scrollTop && pagesrollLeft == scrollLeft) {
         resolve();
