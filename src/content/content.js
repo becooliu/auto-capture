@@ -18,6 +18,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
 });
 
+// Add mouse and keyboard event
 function startSelection() {
   selectionActive = true;
   overlay.style.display = "block";
@@ -26,25 +27,24 @@ function startSelection() {
   document.addEventListener("keydown", handleEscape);
 }
 
+// Mouse down event
 function handleMouseDown(e) {
-  if (!selectionActive) return;
+  if (!selectionActive) return
 
-  startX = e.clientX;
-  startY = e.clientY;
-  pageX = e.pageX;
-  pageY = e.pageY;
-  scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-  scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
-  console.log("scrollTop, scrollLeft", scrollTop, scrollLeft);
+  startX = e.clientX
+  startY = e.clientY
+  pageX = e.pageX
+  pageY = e.pageY
+  // Save the value of page scroll
+  scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+  scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft
+  console.log("scrollTop, scrollLeft", scrollTop, scrollLeft)
 
   if (!selectionRect) {
     selectionRect = document.createElement("div");
-    selectionRect.style.position = "fixed";
-    selectionRect.style.border = "2px dashed #4CAF50";
-    selectionRect.style.backgroundColor = "rgba(76, 175, 80, 0.2)";
-    selectionRect.style.zIndex = "2147483647";
-    selectionRect.style.pointerEvents = "none";
-    document.body.appendChild(selectionRect);
+    const _sytle = `position: fixed; border: 2px dashed #4CAF50; background-color: rgba(76, 175, 80, 0.2); z-index: 2147483647; pointerEvents: none;`
+    selectionRect.style.position = _sytle
+    document.body.appendChild(selectionRect)
   }
 
   selectionRect.style.left = `${startX}px`;
@@ -56,6 +56,7 @@ function handleMouseDown(e) {
   document.addEventListener("mouseup", handleMouseUp);
 }
 
+// Mouse move event
 function handleMouseMove(e) {
   if (!selectionActive) return;
 
@@ -124,6 +125,7 @@ function saveCoordinates(coords) {
   });
 }
 
+// Check if the page scroll to the right coordinates
 async function waitPageScroll() {
   // window.scroll({ top: scrollTop, left: scrollLeft, behavior: "smooth" });
 
